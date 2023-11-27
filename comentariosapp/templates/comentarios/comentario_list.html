@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Comentarios</title>    
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css">
+</head>
+<body>
+
+    <h1>Completar formulario</h1>
+    <form action="{% url 'comentario_list'%}" method="POST">
+        {% csrf_token%}
+        {{ form.as_p }}
+        <button type="submit">Dale caña</button>
+    </form>
+</body>
+</html>

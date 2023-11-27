@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css">
+    <title>Comentarios</title>
+</head>
+<body>
+    <ul>
+        {% for comentario in comentario_list %}
+            <li>
+                <h2><a href="{% url 'comentario_details' pk=comentario.pk%}">{{ comentario.nombre }}</a></h2>
+                <form action="{% url 'comentario_edit' pk=comentario.pk%}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Editar este comentario</button>
+                </form>
+                <a href="{% url 'comentario_delete' pk=comentario.pk%}" role="button">Borrar</a>
+            </li>
+        {% empty %}
+            <li>No hay comentarios por mostrar.</li>
+        {% endfor %}
+        
+        <li>
+            <form action="{% url 'comentario_list' %}" method="POST" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Añadir nuevo comentario</button>
+            </form>
+        </li>
+    </ul>
+</body>
+</html>
